@@ -1,6 +1,41 @@
 # genericDynamoDbService
 Generic Configurable Dynamo DB node JS service
 
+## Deployed documentation
+
+see [here](exampleDoc)
+
+## Running tests
+
+To run tests with mocked dynamodb service simply run
+```bash
+npm run test
+```
+
+To run with an actual dynamodb service. ensure you have your [aws cli configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) 
+
+edit the [test config](./config/test.json) to conatin 
+```json
+"test": {
+    "mock": false
+  },
+```
+Ensure the table in the test config exists in your aws account
+it can be created with the following command:
+```bash
+aws dynamodb create-table \
+    --table-name testInfo \
+    --attribute-definitions \
+        AttributeName=email,AttributeType=S \
+    --key-schema \
+        AttributeName=email,KeyType=HASH 
+```
+
+Tests can then be run with 
+```bash
+npm run test
+```
+
 ## Setup Instuctions
 
 ### Config
@@ -77,3 +112,7 @@ npm install
 npm start
 ```
 
+# Deploy Manually
+```bash
+npm run deploy
+```

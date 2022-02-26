@@ -1,0 +1,206 @@
+openapi: 3.0.0
+info:
+  version: 'v1'
+  title: 'User Info Service'
+  license:
+    name: Apache2.0
+servers:
+  - url: 'https://w9ov9phvr4.execute-api.us-east-1.amazonaws.com/production/v1'
+paths:
+  /userInfo:
+    get:
+      summary: 'Lists all users contained in the dynamodb table to the specified limit. Limit defaults to 10.'
+      operationId: listUser
+      tags:
+        - user
+      parameters:
+        - name: limit
+          in: query
+          description: The number of users to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        '200':
+          description: 'List of json objects of user info.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: 'Creates a new user info entry.'
+      operationId: createUser
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: 'Success message for user added.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /userInfo/{email}:
+    get:
+      summary: 'Gets the current info object for the provided email.'
+      operationId: getUser
+      tags:
+        - user
+      parameters:
+        - name: email
+          in: path
+          description: The email identifing the user info object.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'User info object.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: 'Updates an existing user info object. Updating items with null will delete item from data. Updating including new email will replace email only if not taken by another entry, this will remove the currnt email entry as well.'
+      operationId: createUser
+      tags:
+        - user
+      parameters:
+        - name: email
+          in: path
+          description: The email identifing the user info object.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          description: 'Success message for user updated.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: 'Deletes the info object for the provided email. This endpoint will return successful even for non existing users.'
+      operationId: deleteUser
+      tags:
+        - user
+      parameters:
+        - name: email
+          in: path
+          description: The email identifing the user info object.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Success message for user deleted.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    UserList:
+      type: array
+      $ref: '#/components/schemas/User'
+    User:
+      type: object
+      required:
+        - email
+      additionalProperties: true
+      properties:
+        email:
+          type: string
+          example: 'test@mail.com'
+        phoneNumber:
+          type: string
+          example: '123-456-7890'
+        firstName:
+          type: string
+          example: 'John'
+        middleInitial:
+          type: string
+          example: 'P.'
+        lastName:
+          type: string
+          example: 'Doe'
+        gender:
+          type: string
+          enum: [null, "male", "female", "non-binary", "transgender", "intersex"]
+    UserUpdate:
+      type: object
+      additionalProperties: true
+      properties:
+        email:
+          type: string
+          example: 'test@mail.com'
+        phoneNumber:
+          type: string
+          example: '123-456-7890'
+        firstName:
+          type: string
+          example: 'John'
+        middleInitial:
+          type: string
+          example: 'P.'
+        lastName:
+          type: string
+          example: 'Doe'
+        gender:
+          type: string
+          enum: [null, "male", "female", "non-binary", "transgender", "intersex"]
+    Success:
+      type: object
+      required:
+        - success
+      properties:
+        success: 
+          type: string
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string

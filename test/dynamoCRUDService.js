@@ -133,7 +133,7 @@ describe('Info Object Service', () => {
           .end((err, res) => {
             res.should.have.status(404);
             res.body.should.be.a('object');
-            res.body.should.have.property('status');
+            res.body.should.have.property('error');
             done();
           });
     });
@@ -324,7 +324,7 @@ describe('Info Object Service', () => {
           .end((err, res) => {
             res.should.have.status(404);
             res.body.should.be.a('object');
-            res.body.should.have.property('status');
+            res.body.should.have.property('error');
             done();
           });
     });
@@ -397,7 +397,7 @@ describe('Info Object Service', () => {
   describe(`Create List Get and Delete 100 random users`, () => {
     let users;
     before('Gather user Info.', (done) => {
-      axios.get('https://randomuser.me/api/?results=100')
+      axios.get('https://randomuser.me/api/?results=100&seed=8934759832742938')
           .then((res) => {
             users = res.data.results;
             done();

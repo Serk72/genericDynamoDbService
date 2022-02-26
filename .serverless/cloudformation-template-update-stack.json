@@ -181,7 +181,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/user-dynamo-app/production/1645900020231-2022-02-26T18:27:00.231Z/user-dynamo-app.zip"
+          "S3Key": "serverless/user-dynamo-app/production/1645910981361-2022-02-26T21:29:41.361Z/user-dynamo-app.zip"
         },
         "Handler": "lambda.universal",
         "Runtime": "nodejs14.x",
@@ -204,14 +204,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionJo2csiuetlFrd5XSnWC56TaoVerZ544vPYsw2GY7Zb0": {
+    "ApiLambdaVersionSglCOdmKVHs5wa0HrnEEmChzSQRKzZC5WfBajYfoN8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "q2tuUmjAH+gjddexFQXwfMcIkMa9gYLYvESjUTRpS6g="
+        "CodeSha256": "cZBZgJSGmSN3N2EDdGuJkwQypch1AGlaJIzQ0AOLvdc="
       }
     },
     "ApiGatewayRestApi": {
@@ -336,7 +336,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1645900006668": {
+    "ApiGatewayDeployment1645910965433": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -421,7 +421,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionJo2csiuetlFrd5XSnWC56TaoVerZ544vPYsw2GY7Zb0"
+        "Ref": "ApiLambdaVersionSglCOdmKVHs5wa0HrnEEmChzSQRKzZC5WfBajYfoN8"
       },
       "Export": {
         "Name": "sls-user-dynamo-app-production-ApiLambdaFunctionQualifiedArn"

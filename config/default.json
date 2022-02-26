@@ -15,7 +15,7 @@
         "infoType": "User",
         "schema": {
           "type": "object",
-          "description": "Adds new user info",
+          "description": "user info",
           "additionalProperties": true,
           "required": ["email"],
           "properties": {

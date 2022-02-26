@@ -130,7 +130,7 @@ module.exports = class dynamoCRUDService extends Handler {
           if (info?.Item) {
             response.status(200).send(info.Item);
           } else {
-            response.status(404).send({status: `No ${infoType} found for ${primaryKey}: ${key}`});
+            response.status(404).send({error: `No ${infoType} found for ${primaryKey}: ${key}`});
           }
         });
   }
