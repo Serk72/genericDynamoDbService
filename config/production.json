@@ -1,0 +1,5 @@
+{
+  "dynamodb": {
+    "tableName": "userInfo"
+  }
+}

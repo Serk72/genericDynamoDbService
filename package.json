@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "ajv": "8.10.0",
+    "ajv-keywords": "5.1.0",
+    "aws-sdk": "2.1079.0",
+    "aws-serverless-express": "^3.4.0",
+    "body-parser": "1.19.2",
+    "config": "3.3.7",
+    "cors": "2.8.5",
+    "express": "4.17.3"
+  },
+  "scripts": {
+    "start": "nodemon crudApp.js",
+    "lint": "npx eslint --ext .js .",
+    "test": "nyc --reporter html --reporter=lcov --reporter=text mocha --require mocha-suppress-logs --timeout 10000",
+    "testWithLogs": "nyc --reporter html --reporter=lcov --reporter=text mocha --timeout 10000",
+    "deploy": "serverless deploy"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "^5.6.2",
+    "axios": "^0.26.0",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^9.2.1",
+    "mocha-suppress-logs": "^0.3.1",
+    "nodemon": "2.0.15",
+    "nyc": "^15.1.0",
+    "serverless": "^3.4.0"
+  }
+}

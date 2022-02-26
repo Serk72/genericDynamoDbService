@@ -1,0 +1,48 @@
+{
+    "server": {
+      "port": 8000,
+      "version": "v1"
+    },
+    "test": {
+        "mock": true
+    },
+    "dynamodb": {
+        "tableName": "userInfo",
+        "defaultLimt": 10,
+        "maxLimit": 1000,
+        "removeNulls": true,
+        "primaryKey": "email",
+        "infoType": "User",
+        "schema": {
+          "type": "object",
+          "description": "Adds new user info",
+          "additionalProperties": true,
+          "required": ["email"],
+          "properties": {
+              "email": {
+                  "type": "string"
+              },
+              "phoneNumber": {
+                  "type": ["string", "null"]
+              },
+              "firstName": {
+                  "type": "string"
+              },
+              "middleInitial": {
+                  "type": ["string", "null"]
+              },
+              "lastName": {
+                  "type": "string"
+              },
+              "gender": {
+                  "type": ["string", "null"],
+                  "enum": [null, "male", "female", "non-binary", "transgender", "intersex"],
+                  "transform": ["toLowerCase"]
+              }
+          }
+      }
+    },
+    "aws": {
+      "region": "us-east-1"
+    }
+}

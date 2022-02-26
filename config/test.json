@@ -1,0 +1,8 @@
+{
+  "test": {
+    "mock": true
+  },
+  "dynamodb": {
+    "tableName": "testInfo"
+  }
+}
