@@ -1,7 +1,8 @@
 # genericDynamoDbService
 [![Build Status](https://github.com/Serk72/genericDynamoDbService/workflows/Build/badge.svg?branch=main)](https://github.com/Serk72/genericDynamoDbService/actions)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Serk72/genericDynamoDbService/blob/main/LICENSE)
-[![Coverage Status][https://codecov.io/github/Serk72/genericDynamoDbService/branch/main/graph/badge.svg]][https://codecov.io/github/Serk72/genericDynamoDbService]
+[![Coverage Status](https://codecov.io/github/Serk72/genericDynamoDbService/branch/main/graph/badge.svg)](https://codecov.io/github/Serk72/genericDynamoDbService)
+
 Generic Configurable Dynamo DB node JS service
 
 ## Deployed documentation
