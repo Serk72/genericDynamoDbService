@@ -57,8 +57,9 @@ This application is configured using https://github.com/node-config/node-config 
 | `dynamodb.defaultLimt`         | Int       | The default number of items to return from the `/userInfo` endpoint when listing all users. This value will be used only when no `limit` parameter is sent to the endpoint. | `10` | 
 | `dynamodb.maxLimit`            | Int       | The maximum allowed limit.                               | `1000` |
 | `dynamodb.removeNulls`         | Boolean   | If null values should be removed from the info objects   | `true` |
-| `primaryKey`                   | String    | The primary key for the dynamodb table.                  | `email` |
-| `infoType`                     | String    | Identifier that will be logged indicating data type.  | `User` |
+| `dynamodb.primaryKey`          | String    | The primary key for the dynamodb table.                  | `email` |
+| `dynamodb.infoType`            | String    | Identifier that will be logged indicating data type.  | `User` |
+| `dynamodb.schema`              | Object    | [ajv validation schema](https://ajv.js.org/) that will be applied to the json body of the `post` and `put` endpoints. Top level `required` items will only be applied to the `post` endpoint. | `Described bellow` |
 | `aws.region`                   | String    | The aws region to run in.                            | `us-east-1` |
 | `test.mock`                    | Boolean   | Determins if the dynamodb should be mocked for test of it it will use the actual dynamodb table. | `true` |
 
