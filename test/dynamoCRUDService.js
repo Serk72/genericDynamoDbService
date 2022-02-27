@@ -328,9 +328,47 @@ describe('Info Object Service', () => {
             done();
           });
     });
+    it('it should POST suceed with valida data.', (done) => {
+      chai.request(server._app)
+          .post(`/${version}/${endpointName}`)
+          .send({
+            name: 'Hello',
+            [primaryKey]: 'test1234@gmail',
+            other: null,
+          })
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('success');
+            done();
+          });
+    });
+    it('Fail to rename id value when rename value exists', (done) => {
+      chai.request(server._app)
+          .put(`/${version}/${endpointName}/test1234@gmail`)
+          .send({
+            [primaryKey]: 'new@mail',
+          })
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            done();
+          });
+    });
     it('it should delete entry info', (done) => {
       chai.request(server._app)
           .delete(`/${version}/${endpointName}/new@mail`)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('success');
+            done();
+          });
+    });
+    it('it should delete entry info', (done) => {
+      chai.request(server._app)
+          .delete(`/${version}/${endpointName}/test1234@gmail`)
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');

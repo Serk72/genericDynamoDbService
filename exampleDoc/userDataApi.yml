@@ -86,7 +86,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       summary: 'Updates an existing user info object. Updating items with null will delete item from data. Updating including new email will replace email only if not taken by another entry, this will remove the currnt email entry as well.'
-      operationId: createUser
+      operationId: updateUser
       tags:
         - user
       parameters:
@@ -143,7 +143,30 @@ components:
   schemas:
     UserList:
       type: array
-      $ref: '#/components/schemas/User'
+      items: 
+        type: object
+        required:
+          - email
+        additionalProperties: true
+        properties:
+          email:
+            type: string
+            example: 'test@mail.com'
+          phoneNumber:
+            type: string
+            example: '123-456-7890'
+          firstName:
+            type: string
+            example: 'John'
+          middleInitial:
+            type: string
+            example: 'P.'
+          lastName:
+            type: string
+            example: 'Doe'
+          gender:
+            type: string
+            enum: [null, "male", "female", "non-binary", "transgender", "intersex"]
     User:
       type: object
       required:
